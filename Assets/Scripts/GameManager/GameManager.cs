@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     public Transform pivotToRestart;
-    public GameObject ship;
+    public GameObject ship;    
 
     [Header("Behaviour")]
     [HideInInspector] public float gameTime = 1;
@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButton("Cancel") && endGame)
             RestatGame();
+
+        if (!endGame && UIManager.Instance.currentTime >= 0)
+            UIManager.Instance.UpdateTime();
+
+        if (!endGame && UIManager.Instance.currentTime <= 0)
+            WinGame();
     }
 
 
@@ -32,9 +38,17 @@ public class GameManager : MonoBehaviour
     {
         endGame = true;
         SpawnManager.Instance.spawnAble = false;
+        UIManager.Instance.ShowGameOverScreen(true);
         gameTime = 0;
     }
 
+    public void WinGame()
+    {
+        endGame = true;
+        SpawnManager.Instance.spawnAble = false;
+        UIManager.Instance.ShowVictoryScreen(true);
+        gameTime = 0;
+    }
 
     void RestatGame()
     {
@@ -44,6 +58,11 @@ public class GameManager : MonoBehaviour
         ship.GetComponent<ShipController>().EnebleMesh(true);
         SpawnManager.Instance.DestroyerAllEnemy();
         SpawnManager.Instance.spawnAble = true;
+        UIManager.Instance.ShowGameOverScreen(false);
+        UIManager.Instance.ShowVictoryScreen(false);
+        UIManager.Instance.RestartTime();
+        UIManager.Instance.ResetCoinUI();
+        UIManager.Instance.ResetPlayerHealthUI(100);
         gameTime = 1;
     }
 }

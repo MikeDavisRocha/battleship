@@ -5,10 +5,9 @@ public class CurrencyManager : MonoBehaviour
     public static CurrencyManager instance;
     public static CurrencyManager Instance { get { return instance; } }
 
-
     [Header("References")]
     public GameObject coinMesh;
-
+    
     [Header("Settings")]
     public int maxCountForCurrencys;
 
@@ -25,5 +24,6 @@ public class CurrencyManager : MonoBehaviour
     public void AddCurrency(int valueToAdd)
     {
         totalCurrencys += valueToAdd;
+        UIManager.Instance.UpdateCoinUI(totalCurrencys);
     }
 }

@@ -55,7 +55,7 @@ public class ShipController : Status
         SetCurrentSecondaryCannon(mySecondaryCannonType);
         SetCurrentDrone(myDroneType);
         SetSpecialStats();
-
+        
         currentslowMotionTime = slowMotionMaxTime;
     }
 

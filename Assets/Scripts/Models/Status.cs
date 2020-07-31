@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class Status : MonoBehaviour
 {
-
     [Header("Settings")]
     public ShipType myType;
     public List<StatusLevel> allStatus;
@@ -15,12 +14,16 @@ public class Status : MonoBehaviour
     protected int damage;
     protected int currentLife;
 
+    void Awake()
+    {
+        UIManager.Instance.ResetPlayerHealthUI(allStatus[healthLevel - 1].health);
+    }
 
     public void TakeDamage(float applyDamage)
     {
         allStatus[healthLevel - 1].health -= (int)applyDamage;
+        UIManager.Instance.UpdatePlayerHealthUI(allStatus[healthLevel - 1].health);
     }
-
 
     public void Death(float dropTax = 0, GameObject ob = null)
     {
