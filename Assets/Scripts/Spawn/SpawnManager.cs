@@ -67,7 +67,7 @@ public class SpawnManager : MonoBehaviour
 
     GameObject SelectEnemy()
     {
-        return enemys[Random.Range(0, enemys.Count)];
+        return enemys[Random.Range(0, enemys.Count)];        
     }
 
 

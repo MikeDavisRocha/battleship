@@ -218,6 +218,19 @@ public class EnemysBehavior : MonoBehaviour
                 status[level - 1].stunTime = 0;
 
                 break;
+            case EnemysType.BOUNCE:
+                walk = false;
+                fire = false;
+                rechargFire = false;
+                meleeAttack = false;
+                rangeAttack = false;
+                suicide = false;
+                playerToTarget = false;
+                shield = false;
+                rechargShield = false;
+                stun = false;
+
+                break;
         }
     }
 
